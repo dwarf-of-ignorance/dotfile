@@ -3,13 +3,15 @@
     ./tmux
     ./extra
     ./bat
-    ./zsh
-    ./nvim
+    ./neovim
     ./yazi
     ./zellij
     ./wezterm
     ./git
     ./lang
     ./fzf
+#    ./hx
+    ./shell
+    ./atuin
   ];
 }

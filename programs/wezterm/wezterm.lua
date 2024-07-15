@@ -1,10 +1,5 @@
 local wezterm = require("wezterm")
-local mux = wezterm.mux
 local config = {}
-wezterm.on("gui-startup", function()
-	local tab, pane, window = mux.spawn_window({})
-	window:gui_window():maximize()
-end)
 config.color_scheme = "Gruvbox dark, hard (base16)"
 config.enable_tab_bar = false
 config.tab_bar_at_bottom = false

@@ -3,16 +3,6 @@
 {
     programs = {
         zsh = {
-            prezto = {
-                enable = true;
-            };
-            sessionVariables= {
-                FZF_CTRL_T_OPTS=["
-                    --walker-skip .git,node_modules,target
-                    --preview 'bat -n --color=always {}'
-                    --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-                ];
-            };
             shellAliases = {
                 z = "zellij";
                 y = "yazi";
@@ -22,6 +12,8 @@
                 ll = "eza -lh --icons --grid --group-directories-first";
                 la = "eza -lah --icons --grid --group-directories-first";
                 ".." = "cd ..";
+                vi = "nvim $(fzf --preview 'bat --style=numbers --color=always --line-range :500 {}')";
+                fzf = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'";
             };
             enable = true;
             enableCompletion = true;

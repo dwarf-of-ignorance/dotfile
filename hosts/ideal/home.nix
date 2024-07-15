@@ -18,6 +18,7 @@ in
     ./style.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
+    ../../config/sway.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix

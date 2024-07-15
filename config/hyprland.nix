@@ -29,7 +29,7 @@ with lib;
       let
         modifier = "SUPER";
       in
-      concatStrings [
+      concatStrings [ #bash
         ''
           env = NIXOS_OZONE_WL, 1
           env = NIXPKGS_ALLOW_UNFREE, 1
@@ -65,7 +65,7 @@ with lib;
           input {
             kb_layout = us
             kb_options = grp:alt_shift_toggle
-            kb_options = caps:super
+            kb_options = caps:escape
             follow_mouse = 1
             touchpad {
               natural_scroll = true

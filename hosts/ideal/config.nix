@@ -11,7 +11,7 @@
   imports = [
     ./hardware.nix
     ./users.nix
-    ../../modules/amd-drivers.nix
+#   ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
@@ -100,7 +100,7 @@
   };
 
   # Extra Module Options
-  drivers.amdgpu.enable = true;
+# drivers.amdgpu.enable = true;
   drivers.nvidia.enable = false;
   drivers.nvidia-prime = {
     enable = false;
@@ -135,76 +135,6 @@
   };
 
   programs = {
-    firefox.enable = false;
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = false;
-        buf = {
-          symbol = " ";
-        };
-        c = {
-          symbol = " ";
-        };
-        directory = {
-          read_only = " 󰌾";
-        };
-        docker_context = {
-          symbol = " ";
-        };
-        fossil_branch = {
-          symbol = " ";
-        };
-        git_branch = {
-          symbol = " ";
-        };
-        golang = {
-          symbol = " ";
-        };
-        hg_branch = {
-          symbol = " ";
-        };
-        hostname = {
-          ssh_symbol = " ";
-        };
-        lua = {
-          symbol = " ";
-        };
-        memory_usage = {
-          symbol = "󰍛 ";
-        };
-        meson = {
-          symbol = "󰔷 ";
-        };
-        nim = {
-          symbol = "󰆥 ";
-        };
-        nix_shell = {
-          symbol = " ";
-        };
-        nodejs = {
-          symbol = " ";
-        };
-        ocaml = {
-          symbol = " ";
-        };
-        package = {
-          symbol = "󰏗 ";
-        };
-        python = {
-          symbol = " ";
-        };
-        rust = {
-          symbol = " ";
-        };
-        swift = {
-          symbol = " ";
-        };
-        zig = {
-          symbol = " ";
-        };
-      };
-    };
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -237,6 +167,7 @@
 
   environment.systemPackages = with pkgs; [
     vim
+    sxiv
     wget
     killall
     eza
@@ -245,7 +176,6 @@
     lolcat
     fastfetch
     htop
-    brave
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
@@ -278,21 +208,15 @@
     playerctl
     nh
     nixfmt-rfc-style
-    discord
     libvirt
     swww
     grim
     slurp
-    gnome.file-roller
+    file-roller
     swaynotificationcenter
     imv
     mpv
-    gimp
-    pavucontrol
-    tree
-    neovide
-    greetd.tuigreet
-    gparted
+    dmenu
   ];
 
   fonts = {

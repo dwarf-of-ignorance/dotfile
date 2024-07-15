@@ -2,10 +2,7 @@
 {
         programs.fzf = {
                 enable = true;
-                tmux = {
-                        enableShellIntegration = true;
-                };
-                enableZshIntegration = true;
+                enableBashIntegration = true;
                 changeDirWidgetCommand = "fd --type d";
                 defaultCommand = "fd";
                 fileWidgetCommand = "fd --type f";

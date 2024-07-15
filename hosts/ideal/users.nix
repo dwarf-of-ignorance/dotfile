@@ -23,7 +23,16 @@ in
       shell = pkgs.zsh;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
-        kdePackages.partitionmanager
+          signal-desktop
+              obsidian
+              android-studio
+              tg
+              gimp
+              pavucontrol
+              tree
+              greetd.tuigreet
+              discord
+              brave
       ];
     };
     # "newuser" = {

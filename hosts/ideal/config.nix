@@ -231,8 +231,6 @@
   };
 
   environment.variables = {
-    ZANEYOS_VERSION = "2.2";
-    ZANEYOS = "true";
   };
 
   # Extra Portal Configuration
@@ -277,7 +275,15 @@
       enable = false;
       autodetect = true;
     };
-    libinput.enable = true;
+    libinput = {
+        enable = true;
+        touchpad = {
+            naturalScrolling = true;
+            tapping = true;
+            clickMethod = "clickfinger";
+            disableWhileTyping = true;
+        };
+    };
     fstrim.enable = true;
     gvfs.enable = true;
     openssh.enable = true;

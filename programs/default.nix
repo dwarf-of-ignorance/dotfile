@@ -1,6 +1,5 @@
 {
   imports = [
-    ./tmux
     ./extra
     ./bat
     ./neovim
@@ -13,5 +12,7 @@
 #    ./hx
     ./shell
     ./atuin
+    ./rofi
+    ./btop
   ];
 }

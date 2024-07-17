@@ -9,7 +9,6 @@
 }:
 
 let
-  hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
   inherit (import ../hosts/${host}/variables.nix)
     browser
     terminal
@@ -22,9 +21,6 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    # plugins = [
-    #   hyprplugins.hyprtrails
-    # ];
     extraConfig =
       let
         modifier = "SUPER";
@@ -54,12 +50,12 @@ with lib;
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
-            gaps_in = 6
-            gaps_out = 8
-            border_size = 2
+            gaps_in = 2
+            gaps_out = 0
+            border_size = 1
             layout = dwindle
             resize_on_border = true
-            col.active_border = rgb(${config.stylix.base16Scheme.base08})
+            col.active_border = rgb(${config.stylix.base16Scheme.base04})
             col.inactive_border = rgb(${config.stylix.base16Scheme.base01})
           }
           input {
@@ -94,48 +90,42 @@ with lib;
             key_press_enables_dpms = false
           }
           animations {
-            enabled = yes
+            enabled = no
             bezier = wind, 0.05, 0.9, 0.1, 1.05
             bezier = winIn, 0.1, 1.1, 0.1, 1.1
             bezier = winOut, 0.3, -0.3, 0, 1
             bezier = liner, 1, 1, 1, 1
-            animation = windows, 1, 6, wind, slide
-            animation = windowsIn, 1, 6, winIn, slide
-            animation = windowsOut, 1, 5, winOut, slide
-            animation = windowsMove, 1, 5, wind, slide
-            animation = border, 1, 1, liner
-            animation = fade, 1, 10, default
-            animation = workspaces, 1, 5, wind
+            animation = windows, 0, 6, wind, slide
+            animation = windowsIn, 0, 6, winIn, slide
+            animation = windowsOut, 0, 5, winOut, slide
+            animation = windowsMove, 0, 5, wind, slide
+            animation = border, 0, 1, liner
+            animation = fade, 0, 10, default
+            animation = workspaces, 0, 5, wind
           }
-          decoration {
-            rounding = 10
-            drop_shadow = true
-            shadow_range = 4
-            shadow_render_power = 3
-            col.shadow = rgba(1a1a1aee)
-            blur {
-                enabled = true
-                size = 5
-                passes = 3
-                new_optimizations = on
-                ignore_opacity = off
-            }
-          }
-          plugin {
-            hyprtrails {
-            }
-          }
+#         decoration {
+#           rounding = 10
+#           drop_shadow = true
+#           shadow_range = 4
+#           shadow_render_power = 3
+#           col.shadow = rgba(1a1a1aee)
+#           blur {
+#               enabled = true
+#               size = 5
+#               passes = 3
+#               new_optimizations = on
+#               ignore_opacity = off
+#           }
+#         }
           dwindle {
             pseudotile = true
             preserve_split = true
           }
           bind = ${modifier},Return,exec,${terminal}
-          bind = ${modifier}SHIFT,Return,exec,rofi-launcher
-          bind = ${modifier}SHIFT,W,exec,web-search
+          bind = ${modifier}SHIFT,Return,exec, rofi-launcher
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}
-          bind = ${modifier},E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
           bind = ${modifier},D,exec,discord
           bind = ${modifier},O,exec,obs

@@ -7,7 +7,6 @@
 }:
 
 let
-  betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
   inherit (import ../hosts/${host}/variables.nix) clock24h;
 in
 with lib;
@@ -23,12 +22,11 @@ with lib;
         modules-center = [ ];
         modules-left = [
             "hyprland/workspaces" 
-            #   "custom/startmenu"
-                "hyprland/window"
-            #   "idle_inhibitor"
+            "hyprland/window"
+            "sway/workspaces" 
+            "sway/window"
         ];
         modules-right = [
-          "custom/hyprbindings"
           "cpu"
           "memory"
           "custom/notification"
@@ -49,17 +47,34 @@ with lib;
           on-scroll-up = "hyprctl dispatch workspace e+1";
           on-scroll-down = "hyprctl dispatch workspace e-1";
         };
-        "clock" = {
-          format = if clock24h == true then '' {:L%H:%M}'' else '' {:L%I:%M %p}'';
-          tooltip = true;
-          tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
+        "sway/workspaces" = {
+          format = "{name}";
+          format-icons = {
+            default = " ";
+            active = " ";
+            urgent = " ";
+          };
+          on-scroll-up = "hyprctl dispatch workspace e+1";
+          on-scroll-down = "hyprctl dispatch workspace e-1";
         };
         "hyprland/window" = {
           max-length = 22;
           separate-outputs = false;
           rewrite = {
-            "" = " 🙈 No Windows? ";
+            "" = "empty";
           };
+        };
+        "sway/window" = {
+          max-length = 22;
+          separate-outputs = false;
+          rewrite = {
+            "" = "empty";
+          };
+        };
+        "clock" = {
+          format = if clock24h == true then '' {:L%H:%M}'' else '' {:L%I:%M %p}'';
+          tooltip = true;
+          tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };
         "memory" = {
           interval = 5;
@@ -117,25 +132,6 @@ with lib;
           tooltip = false;
           format = "";
           on-click = "sleep 0.1 && wlogout";
-        };
-        "custom/startmenu" = {
-          tooltip = false;
-          format = "";
-          # exec = "rofi -show drun";
-          on-click = "sleep 0.1 && rofi-launcher";
-        };
-        "custom/hyprbindings" = {
-          tooltip = false;
-          format = "󱕴";
-          on-click = "sleep 0.1 && list-hypr-bindings";
-        };
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-          tooltip = "true";
         };
         "custom/notification" = {
           tooltip = false;
@@ -206,7 +202,6 @@ with lib;
           color: #${config.stylix.base16Scheme.base00};
           background: #${config.stylix.base16Scheme.base0F};
           opacity: 0.5;
-          transition: ${betterTransition};
         }
         #workspaces button.active {
           font-weight: bold;
@@ -214,7 +209,15 @@ with lib;
           margin: 0px 3px;
           color: #${config.stylix.base16Scheme.base00};
           background: #${config.stylix.base16Scheme.base0F};
-          transition: ${betterTransition};
+          opacity: 1.0;
+          min-width: 40px;
+        }
+        #workspaces button.focused{
+          font-weight: bold;
+          padding: 0px 5px;
+          margin: 0px 3px;
+          color: #${config.stylix.base16Scheme.base00};
+          background: #${config.stylix.base16Scheme.base0F};
           opacity: 1.0;
           min-width: 40px;
         }
@@ -223,7 +226,6 @@ with lib;
           color: #${config.stylix.base16Scheme.base00};
           background: #${config.stylix.base16Scheme.base0F};
           opacity: 0.8;
-          transition: ${betterTransition};
         }
         tooltip {
           background: #${config.stylix.base16Scheme.base00};
@@ -239,7 +241,7 @@ with lib;
           margin: 0px;
           padding: 0px 30px 0px 15px;
         }
-        #custom-hyprbindings, #network,  #memory ,#battery,
+          #network,  #memory ,#battery,
           #custom-exit ,#clock{
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};

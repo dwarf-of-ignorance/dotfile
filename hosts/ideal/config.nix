@@ -55,7 +55,7 @@
     autoEnable = true;
     image = ../../config/wallpapers/wallpaper.jpg;
     base16Scheme = {
-          base00= "282828" ;# ----
+          base00= "1d2021" ;# ----
           base01= "3c3836" ;# ---
           base02= "504945" ;# --
           base03= "665c54" ;# -
@@ -72,6 +72,7 @@
           base0E= "d3869b" ;# purple
           base0F= "d65d0e" ;# brown
     };
+
     polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
@@ -144,12 +145,6 @@
       enableSSHSupport = true;
     };
     virt-manager.enable = true;
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -230,8 +225,7 @@
     ];
   };
 
-  environment.variables = {
-  };
+  environment.variables.STARSHIP_LOG = "off";
 
   # Extra Portal Configuration
   xdg.portal = {
@@ -286,8 +280,8 @@
     };
     fstrim.enable = true;
     gvfs.enable = true;
-    openssh.enable = true;
-    flatpak.enable = false;
+    openssh.enable = false;
+    flatpak.enable = true;
     printing = {
       enable = true;
       drivers = [
@@ -338,7 +332,6 @@
   services.blueman.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
 
   # Security / Polkit
@@ -377,15 +370,11 @@
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
   };
 
   # Virtualization / Containers
   virtualisation.libvirtd.enable = true;
+  virtualisation.waydroid.enable = true;
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;

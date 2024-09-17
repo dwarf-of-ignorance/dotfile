@@ -1,10 +1,13 @@
-
 { pkgs,config, ...}:
 {
-
-	#home.file.".config/yazi/theme.toml".source = ./theme.toml;
-	programs.yazi = {
-		enable = true;
-	};
-
+    programs.yazi = {
+        enable = true;
+        settings = {
+            preview = {
+                image_filter = "lanczos3";
+                ueberzug_scale = 3;
+                ueberzug_offset = [0 0 0 0];
+            };
+        };
+    };
 }

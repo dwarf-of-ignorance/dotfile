@@ -1,11 +1,12 @@
 {
   imports = [
     ./extra
+    ./test
     ./bat
     ./neovim
     ./yazi
     ./zellij
-    ./wezterm
+#   ./wezterm
     ./git
     ./lang
     ./fzf
@@ -14,5 +15,7 @@
     ./atuin
     ./rofi
     ./btop
+    ./foot
+    ./wofi
   ];
 }

@@ -21,6 +21,7 @@ inherit (import ../hosts/${host}/variables.nix)
         enable = true;
         config.bars = [{
             position = "bottom";
+            command = "waybar";
         }];
         systemd.enable = true;
         extraConfig =

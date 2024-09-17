@@ -2,6 +2,8 @@
 {
   home.packages = (with pkgs; [
 #languages
-      kotlin
+          kotlin
+          go
+          jupyter
   ]);
 }

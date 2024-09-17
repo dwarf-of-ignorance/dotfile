@@ -10,4 +10,6 @@ require'lspconfig'.clangd.setup{}
 require'lspconfig'.jdtls.setup{}
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.gleam.setup{}
 require'lspconfig'.kotlin_language_server.setup{}

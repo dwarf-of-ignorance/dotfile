@@ -12,6 +12,6 @@
   waybarAnimations = false;
 
   # Program Options
-  browser = "vivaldi"; # Set Default Browser (google-chrome-stable for google-chrome)
-  terminal = "wezterm"; # Set Default System Terminal
+  browser = "io.github.zen_browser.zen"; # Set Default Browser (google-chrome-stable for google-chrome)
+  terminal = "foot"; # Set Default System Terminal
 }

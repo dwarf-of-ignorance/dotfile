@@ -5,7 +5,7 @@
             ./starship.nix
             ./bash.nix
     ];
-home.packages = with pkgs; [
-  (writeShellScriptBin "zs" (builtins.readFile ./scripts/zs))
-];
+#   home.packages = with pkgs; [
+#     (writeShellScriptBin "zs" (builtins.readFile ./scripts/zs))
+#   ];
 }

@@ -76,10 +76,15 @@ with lib;
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
           windowrule = float, nwg-look|qt5ct|mpv
           windowrule = float, zoom
+          windowrule = float, ^(qalculate-gtk)$
+          windowrule = center,^(qalculate-gtk)$
+          windowrulev2 = minsize 1 1, title:^()$,class:^(qalculate-gtk)$
+          windowrulev2 = stayfocused, title:^()$,class:^(qalculate-gtk)$
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
           windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
+
           gestures {
             workspace_swipe = true
             workspace_swipe_fingers = 3
@@ -123,6 +128,7 @@ with lib;
           }
           bind = ${modifier},Return,exec,${terminal}
           bind = ${modifier}SHIFT,Return,exec, rofi-launcher
+          bind = ${modifier},K,exec, qalculate-gtk
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}

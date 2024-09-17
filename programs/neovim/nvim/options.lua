@@ -17,7 +17,9 @@ opt.backspace = "indent,eol,start"
 opt.splitright = true
 opt.splitbelow = true
 opt.swapfile = false
-vim.g.mapleader = " "
+opt.scrolloff = 8
+opt.colorcolumn = "100"
 
 opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.g.mapleader = " "

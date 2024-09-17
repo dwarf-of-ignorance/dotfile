@@ -18,6 +18,7 @@
         marksman
         jdt-language-server
         javascript-typescript-langserver
+        vscode-langservers-extracted
         kotlin-language-server
         llvmPackages_18.clang-tools         
 
@@ -40,7 +41,6 @@
         friendly-snippets
         lspkind-nvim
         comment-nvim
-        nvim-ts-context-commentstring
         plenary-nvim
         neodev-nvim
         luasnip
@@ -51,17 +51,18 @@
         telescope-ui-select-nvim
         telescope-fzy-native-nvim
         gruvbox-nvim
-      ];
+        yazi-nvim
+        ];
       extraLuaConfig = ''
         ${builtins.readFile ./nvim/options.lua}
         ${builtins.readFile ./nvim/keymaps.lua}
         ${builtins.readFile ./nvim/plugins/autopairs.lua}
         ${builtins.readFile ./nvim/plugins/auto-session.lua}
-        ${builtins.readFile ./nvim/plugins/comment.lua}
         ${builtins.readFile ./nvim/plugins/cmp.lua}
         ${builtins.readFile ./nvim/plugins/lsp.lua}
         ${builtins.readFile ./nvim/plugins/telescope.lua}
         ${builtins.readFile ./nvim/plugins/todo-comments.lua}
+        ${builtins.readFile ./nvim/plugins/undotree.lua}
         ${builtins.readFile ./nvim/plugins/treesitter.lua}
       '';
     };

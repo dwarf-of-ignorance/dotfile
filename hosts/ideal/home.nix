@@ -20,7 +20,7 @@
     ../../programs/default.nix
   ];
 
-  # Place Files Inside Home Directory
+   # Place Files Inside Home Directory
   home.file."Pictures/Wallpapers" = {
     source = ../../config/wallpapers;
     recursive = true;
@@ -59,12 +59,14 @@
 
   # Styling Options
   stylix.targets.waybar.enable = false;
-  stylix.targets.hyprland.enable = false;
+  stylix.targets.rofi.enable = false;
+  stylix.targets.wofi.enable = false;
   stylix.targets.zellij.enable = false;
+  stylix.targets.hyprland.enable = false;
   gtk = {
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "Gruvbox";
+      package = pkgs.gruvbox-plus-icons;
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
@@ -83,17 +85,14 @@
   # Scripts
   home.packages = [
     (import ../../scripts/task-waybar.nix { inherit pkgs; })
-    (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
     (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
     (import ../../scripts/wallsetter.nix {
       inherit pkgs;
       inherit username;
     })
+    (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
-    (import ../../scripts/list-hypr-bindings.nix {
-      inherit pkgs;
-      inherit host;
-    })
+    (import ../../scripts/zellij-sessionizer.nix { inherit pkgs; })
   ];
 
   services = {
@@ -103,6 +102,10 @@
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
+          starship = {
+            enable = true;
+            package = pkgs.starship;
+          };
         };
         listener = [
           {
@@ -120,12 +123,6 @@
   };
 
   programs = {
-    btop = {
-      enable = true;
-      settings = {
-        vim_keys = true;
-      };
-    };
     home-manager.enable = true;
     hyprlock = {
       enable = true;

@@ -6,13 +6,12 @@
         zed-editor
         fd
         libsForQt5.okular
-        vivaldi
         pandoc
         zip
         qalculate-gtk
         wl-gammactl
         vlc
-        signal-desktop
+        mcron
         obsidian
         android-studio
         tg
@@ -27,6 +26,18 @@
         chromium
         qbittorrent
         anki
+        mcron
+        sweethome3d.application
+        font-manager
+        ytfzf
+        widelands
+        gnumake
+        cmake
+        ytmdesktop
+        spotube
+        nodejs_23
+#       onlyoffice-desktopeditors
+#       onlyoffice-documentserver
   ]);
 }
 

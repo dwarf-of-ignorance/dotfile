@@ -7,25 +7,8 @@
 let
   inherit (import ./variables.nix) gitUsername;
 in
-    {
-    imports = [
-    ];
-    
-  services.httpd = {
-    enable = true;
-    adminAddr = "webmaster@example.org";
-    enablePHP = true;
-    virtualHosts = {
-      "localhost" = {
-        documentRoot = "/var/www/localhost";
-      };
-    };
-  };
-
-  environment.systemPackages = with pkgs; [
-    php
-  ];
-    users.users = {
+{
+  users.users = {
     "${username}" = {
       homeMode = "755";
       isNormalUser = true;
@@ -37,9 +20,11 @@ in
         "scanner"
         "lp"
       ];
-            shell = pkgs.zsh;
-            ignoreShellProgramCheck = true;
-        };
+      shell = pkgs.zsh;
+      ignoreShellProgramCheck = true;
+      packages = with pkgs; [
+      ];
+    };
     # "newuser" = {
     #   homeMode = "755";
     #   isNormalUser = true;

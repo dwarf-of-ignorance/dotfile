@@ -2,8 +2,6 @@
   lib,
   username,
   host,
-  inputs,
-  pkgs,
   config,
   ...
 }:
@@ -13,6 +11,7 @@ let
     browser
     terminal
     extraMonitorSettings
+    keyboardLayout
     ;
 in
 with lib;
@@ -25,7 +24,7 @@ with lib;
       let
         modifier = "SUPER";
       in
-      concatStrings [ #bash
+      concatStrings [ #sh
         ''
           env = NIXOS_OZONE_WL, 1
           env = NIXPKGS_ALLOW_UNFREE, 1
@@ -46,7 +45,7 @@ with lib;
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/wallpaper.jpg
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -55,16 +54,18 @@ with lib;
             border_size = 1
             layout = dwindle
             resize_on_border = true
-            col.active_border = rgb(${config.stylix.base16Scheme.base04})
+            col.active_border = rgb(${config.stylix.base16Scheme.base0B})
             col.inactive_border = rgb(${config.stylix.base16Scheme.base01})
           }
           input {
-            kb_layout = us
+            kb_layout = ${keyboardLayout}
             kb_options = grp:alt_shift_toggle
             kb_options = caps:escape
             follow_mouse = 1
             touchpad {
               natural_scroll = true
+              disable_while_typing = true
+              scroll_factor = 0.8
             }
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
@@ -76,59 +77,30 @@ with lib;
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
           windowrule = float, nwg-look|qt5ct|mpv
           windowrule = float, zoom
-          windowrule = float, ^(qalculate-gtk)$
-          windowrule = center,^(qalculate-gtk)$
-          windowrulev2 = minsize 1 1, title:^()$,class:^(qalculate-gtk)$
-          windowrulev2 = stayfocused, title:^()$,class:^(qalculate-gtk)$
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
           windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
-
           gestures {
             workspace_swipe = true
             workspace_swipe_fingers = 3
           }
           misc {
-            initial_workspace_tracking = 0
-            mouse_move_enables_dpms = true
-            key_press_enables_dpms = false
+          initial_workspace_tracking = 0
+          mouse_move_enables_dpms = true
+          key_press_enables_dpms = false
           }
           animations {
-            enabled = no
-            bezier = wind, 0.05, 0.9, 0.1, 1.05
-            bezier = winIn, 0.1, 1.1, 0.1, 1.1
-            bezier = winOut, 0.3, -0.3, 0, 1
-            bezier = liner, 1, 1, 1, 1
-            animation = windows, 0, 6, wind, slide
-            animation = windowsIn, 0, 6, winIn, slide
-            animation = windowsOut, 0, 5, winOut, slide
-            animation = windowsMove, 0, 5, wind, slide
-            animation = border, 0, 1, liner
-            animation = fade, 0, 10, default
-            animation = workspaces, 0, 5, wind
+          enabled = no
           }
-#         decoration {
-#           rounding = 10
-#           drop_shadow = true
-#           shadow_range = 4
-#           shadow_render_power = 3
-#           col.shadow = rgba(1a1a1aee)
-#           blur {
-#               enabled = true
-#               size = 5
-#               passes = 3
-#               new_optimizations = on
-#               ignore_opacity = off
-#           }
-#         }
           dwindle {
             pseudotile = true
             preserve_split = true
           }
           bind = ${modifier},Return,exec,${terminal}
-          bind = ${modifier}SHIFT,Return,exec, rofi-launcher
-          bind = ${modifier},K,exec, qalculate-gtk
+          bind = ${modifier},E,exec,emacsclient -c -a 'emacs'
+          bind = ${modifier}SHIFT,Return,exec,rofi-launcher
+          bind = ${modifier}SHIFT,W,exec,web-search
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}

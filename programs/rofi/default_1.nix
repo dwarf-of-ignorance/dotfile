@@ -10,7 +10,7 @@
                 show-icons = true;
                 icon-theme = "Papirus";
                 location = 0;
-                font = "JetBrainsMono Nerd Font Mono 12";
+                font = "JetBrainsMono Nerd Font Mono";
                 drun-display-format = "{icon} {name}";
             };
 
